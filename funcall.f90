@@ -2122,8 +2122,9 @@ module funcall
         15     CONTINUE
         T(1)=M1
         T(2)=M2
-        DO 20 I=1,N
-        20      D(I)=Y(I)-T(I)
+        DO I=1,N
+              D(I)=Y(I)-T(I)
+        END DO
         RETURN
     END SUBROUTINE HPFILT
     !***********************************************************************
