@@ -14,26 +14,26 @@ logical, parameter :: mpi_on = .TRUE.
 
 integer, parameter::doub=8, sing=4
 ! Model parameters (relevant)
-real(doub), parameter:: sdz = .0138298 !   GROWTH RATE VOLATILITY (unconditional)
-real(doub), parameter:: sds = .0113592 ! .07 ! (LT Case)    s-SHOCK VOLATILITY
+real(doub), parameter:: sdz = 0.0138298 !   GROWTH RATE VOLATILITY (unconditional)
+real(doub), parameter:: sds = 0.0113592 ! .07 ! (LT Case)    s-SHOCK VOLATILITY
 real(doub), parameter:: rhoz = 0.3308571 !  GROWTH RATE PERSISTENCE
-real(doub), parameter:: muz= .0033107 !  AVERAGE GROWTH RATE
+real(doub), parameter:: muz= 0.0033107 !  AVERAGE GROWTH RATE
 real(doub), parameter:: lambdaset = 1.0 ! .0638 ! (LT) ! MATURITY OF DEBT (FRACTION THAT MATURES)
 real(doub), parameter:: rbase=0.01 ! RISK-FREE RATE
 real(doub), parameter:: ent=0.125 ! RE-ENTRY PROBABILITY SHOCK
 real(doub), parameter:: lend_share = 0.0 ! Share of auction revenue returned to lenders pro-rata in default
 real(doub), parameter:: tax_rev_share = 0.106 !  Tax revenue share of GDP (set 1.0 if treating output as GDP; .106 if output is tax rev)
-real(doub), parameter:: doub_percentile = .97  ! Used to match fraction of crisis periods in calibration
+real(doub), parameter:: doub_percentile = 0.97  ! Used to match fraction of crisis periods in calibration
 
-real(doub), parameter :: epsilon_upper_bar = .0001 ! intratemporal default shock (non-degenerate)
-real(doub), parameter :: epsilon_lower_bar = .0000 !  uniform distribution necessary with zero mean
+real(doub), parameter :: epsilon_upper_bar = 0.0001 ! intratemporal default shock (non-degenerate)
+real(doub), parameter :: epsilon_lower_bar = 0.0000 !  uniform distribution necessary with zero mean
 
 
-real(doub) :: aminset =  -.75 ! (ST) ! (LT) !  Bound on asset grid
+real(doub) :: aminset =  -0.75 ! (ST) ! -8.0 ! (LT) !  Bound on asset grid
 
 
 ! COUPON PAYMENTS (FRACTION OF DEBT)
-real(doub), parameter :: coupset = .03
+real(doub), parameter :: coupset = 0.03
 
 logical, parameter :: GMM_on = .FALSE. ! SWITCH THAT DETERMINES WHETHER RUNNING ONCE OR MATCHING MOMENTS
 
