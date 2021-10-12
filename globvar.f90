@@ -14,22 +14,22 @@ logical, parameter :: mpi_on = .TRUE.
 
 integer, parameter::doub=8, sing=4
 ! Model parameters (relevant)
-real(doub), parameter:: sdz = .0138298 ! (MX) ! .0082939 ! (IT) !         GROWTH RATE VOLATILITY (unconditional)
-real(doub), parameter:: sds = .0113592 ! (MX) !  .0096982 !(IT) ! .07 !     s-SHOCK VOLATILITY
-real(doub), parameter:: rhoz = 0.3308571 ! (MX) !  .579109 ! (IT) !     GROWTH RATE PERSISTENCE
-real(doub), parameter:: muz= .0033107 ! (MX) ! .0022693 ! (IT) !     AVERAGE GROWTH RATE
-real(doub), parameter:: lambdaset = 1.0 ! .0638 ! (MXLT) ! .0286 !(ITLT) !  1.0 !    1.0 !0.125 ! MATURITY OF DEBT (FRACTION THAT MATURES)
+real(doub), parameter:: sdz = .0138298 !   GROWTH RATE VOLATILITY (unconditional)
+real(doub), parameter:: sds = .0113592 ! .07 ! (LT Case)    s-SHOCK VOLATILITY
+real(doub), parameter:: rhoz = 0.3308571 !  GROWTH RATE PERSISTENCE
+real(doub), parameter:: muz= .0033107 !  AVERAGE GROWTH RATE
+real(doub), parameter:: lambdaset = 1.0 ! .0638 ! (LT) ! MATURITY OF DEBT (FRACTION THAT MATURES)
 real(doub), parameter:: rbase=0.01 ! RISK-FREE RATE
 real(doub), parameter:: ent=0.125 ! RE-ENTRY PROBABILITY SHOCK
-real(doub), parameter:: lend_share = 0.0 ! 0.0 ! Share of auction revenue returned to lenders pro-rata in default
-real(doub), parameter:: tax_rev_share = 0.176 ! (MX) ! 0.29 ! (IT) !    Tax revenue share of GDP (set 1.0 if treating output as GDP; .106 if output is tax rev)
-real(doub), parameter:: doub_percentile = .97 ! (MX) ! .93 ! (IT) ! Used to match fraction of crisis periods in calibration
+real(doub), parameter:: lend_share = 0.0 ! Share of auction revenue returned to lenders pro-rata in default
+real(doub), parameter:: tax_rev_share = 0.106 !  Tax revenue share of GDP (set 1.0 if treating output as GDP; .106 if output is tax rev)
+real(doub), parameter:: doub_percentile = .97  ! Used to match fraction of crisis periods in calibration
 
-real(doub), parameter :: epsilon_upper_bar = .0001 ! 0.0001 ! intratemporal default shock (non-degenerate)
-real(doub), parameter :: epsilon_lower_bar = .0000 ! 0.0  ! uniform distribution necessary with zero mean
+real(doub), parameter :: epsilon_upper_bar = .0001 ! intratemporal default shock (non-degenerate)
+real(doub), parameter :: epsilon_lower_bar = .0000 !  uniform distribution necessary with zero mean
 
 
-real(doub) :: aminset =  -.75 ! (MXST) ! -8.0 ! (MXLTEG) ! -15.0 ! (IT)  ! -1.0 ! (ITST) !  -5.0 ! (MXSTEG) ! -8.0 ! (MX) !  Bound on asset grid
+real(doub) :: aminset =  -.75 ! (ST) ! (LT) !  Bound on asset grid
 
 
 ! COUPON PAYMENTS (FRACTION OF DEBT)
@@ -39,9 +39,9 @@ logical, parameter :: GMM_on = .FALSE. ! SWITCH THAT DETERMINES WHETHER RUNNING 
 
 ! If computing once, these parameters are fixed;
 ! During GMM, these parameters are the initial guess
-real(doub) :: beta_true = 0.8 ! (MX) ! 0.95 ! (IT) !     SOVEREIGN DISCOUNT FACTOR
-real(doub) :: defp0 =  0.176 ! (MXST) ! 0.467 !(MXLT) !  .665 ! (ITLT) !  .143 ! (ITST) ! 0.455 ! (MXLTEG) !     PROPORTIONAL OUTPUT COST OF DEFAULT
-real(doub), parameter :: pes_bel = 0.0, con_bel = 0.0079 ! 0.0025 !  .0044 ! 0.003 ! (ITLT) ! 0.0044 !(MXLT) ! !! Belief probabilities (must sum to one)
+real(doub) :: beta_true = 0.8 !   SOVEREIGN DISCOUNT FACTOR
+real(doub) :: defp0 =  0.176 ! (ST) ! 0.467 !(LT) !     PROPORTIONAL OUTPUT COST OF DEFAULT
+real(doub), parameter :: pes_bel = 0.0, con_bel = 0.0079 ! 0.0042 !(LT) ! !! Belief probabilities (must sum to one)
 real(doub), parameter :: opt_bel = 1.0-pes_bel-con_bel
 
 real(doub) :: sdw = 0.0001 ! 2.640 !.653 ! LENDER WEALTH VOLATILITY (unconditional)
@@ -55,8 +55,8 @@ character(LEN=100) :: tagg = 'revision2_mex_ST.txt', temp_str, temp_name
 ! Divide by Y to derive:     c = 1-defp0+defp1/exp(g)
 ! i.e. Higher g implies relatively lower consumption post-default
 
-! Set integer parameters used as grid sizes
-integer, parameter::S=11, Z=15, A=500, W = 1, EPS_CHECK = 100 ! EPS_CHECK = 50  ! GRID SIZES 11 25 350 1
+! Set integer parameters used as grid sizes !
+integer, parameter::S=11, Z=15, A=500, W = 1, EPS_CHECK = 100 ! SET A=550 in LT Case
 character(LEN=10), parameter :: formatter = '(500f9.6)' ! Change this when changing size of 'A'
 character(LEN=9), parameter :: formatter2 = '(11f12.7)'  ! Change this when changing size of 'S'
 character(LEN=9), parameter :: formatter3 = '(500i6.3)'  ! Change this when changing size of 'A'
